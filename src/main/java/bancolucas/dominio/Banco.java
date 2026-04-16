@@ -1,12 +1,17 @@
 package bancolucas.dominio;
 
+import interbancario.BancoRed;
+import interbancario.MediatorInterbancario;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Banco {
+public class Banco implements BancoRed {
     // Lista de cuentas
     private List<Sucursal> sucursales = new ArrayList<>();
     private List<Usuario> usuarios = new ArrayList<>();
+    private MediatorInterbancario mediator;
+    private String codigoBanco = "BANCO_LUCAS";
 
     public Banco() {
         usuarios.add(new Usuario("admin@banco.com", "banco123", Rol.ADMIN_CENTRAL));
@@ -95,5 +100,38 @@ public class Banco {
 
     public List<Sucursal> getSucursales() {
         return sucursales;
+    }
+
+    @Override
+    public String getCodigoBanco() {
+        return codigoBanco;
+    }
+
+    @Override
+    public void setMediator(MediatorInterbancario mediator) {
+        this.mediator = mediator;
+    }
+
+    @Override
+    public boolean recibirTransferenciaExterna(String email, double monto) {
+        Cuenta cuentaDestino = buscarPorEmailEnSucursales(email);
+        if (cuentaDestino != null && !cuentaDestino.isSolicitoBaja()) {
+            cuentaDestino.sumarSaldo(monto);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public double obtenerBalanceExterno(String email) {
+        Cuenta cuentaDestino = buscarPorEmailEnSucursales(email);
+        if (cuentaDestino != null) {
+            return cuentaDestino.getSaldo();
+        }
+        return -1;
+    }
+
+    public MediatorInterbancario getMediator() {
+        return mediator;
     }
 }

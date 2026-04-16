@@ -2,10 +2,7 @@ package bancolucas.interfazUsuario;
 
 import bancolucas.dominio.Banco;
 import bancolucas.dominio.*;
-import bancolucas.estrategias.Depositar;
-import bancolucas.estrategias.ProcesadorDeTransacciones;
-import bancolucas.estrategias.Retirar;
-import bancolucas.estrategias.Transferir;
+import bancolucas.estrategias.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -89,16 +86,23 @@ public class PortalBancario {
             procesador.setEstrategia(new Transferir());
             realizarTransaccion(cuentaUsuario, true);
         });
-        subMenu.agregarOpcion(4,"Consultar mi balance", () -> {
+        subMenu.agregarOpcion(4,"Transferir a OTRO banco", () -> {
+            System.out.println("Ingrese el codigo del banco a donde desea transferir:");
+            String codigo = scanner.nextLine();
+
+            procesador.setEstrategia(new TransferirExterna(codigo));
+            realizarTransaccion(cuentaUsuario, true);
+        });
+        subMenu.agregarOpcion(5,"Consultar mi balance", () -> {
             System.out.println("Su saldo actual es: $" + cuentaUsuario.getSaldo());
         });
-        subMenu.agregarOpcion(5, "Solicitar BAJA de mi cuenta", () -> {
+        subMenu.agregarOpcion(6, "Solicitar BAJA de mi cuenta", () -> {
             cuentaUsuario.solicitarBaja();
             System.out.println("Solicitud de baja enviada. Espere la respuesta del administrador.");
             System.out.println("Por su seguridad, se cerrara la sesion");
             subMenu.forzarSalida();
         });
-        subMenu.agregarOpcionSalir(6, "Salir");
+        subMenu.agregarOpcionSalir(7, "Salir");
         subMenu.mostrar();
     }
 
