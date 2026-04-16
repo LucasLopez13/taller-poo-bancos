@@ -13,6 +13,7 @@ public class Banco implements BancoRed {
     private Persona ceo;
     private List<Sucursal> sucursales = new ArrayList<>();
     private MediatorInterbancario mediator;
+    private String codigoBanco = "BANCO_DANIEL";
 
     public void setCeo(Persona ceo) {
         if (ceo.getRol() == Rol.CEO) {
@@ -58,7 +59,7 @@ public class Banco implements BancoRed {
     @Override
     public String getCodigoBanco() {
         // TODO poner codigo en comun de intermunacion con lucas luego
-        return this.getNombre();
+        return codigoBanco;
     }
 
     @Override
