@@ -1,9 +1,6 @@
 package bancodaniel.menu;
 
-import bancodaniel.command.usuario.DepositarCommand;
-import bancodaniel.command.usuario.RetirarCommand;
-import bancodaniel.command.usuario.TransferirCommand;
-import bancodaniel.command.usuario.VerSaldoCommand;
+import bancodaniel.command.usuario.*;
 import bancodaniel.model.Banco;
 import bancodaniel.model.Persona;
 
@@ -25,6 +22,7 @@ public class MenuUsuario implements MenuStrategy{
         System.out.println("2. Retirar");
         System.out.println("3. Transferir");
         System.out.println("4. Saldo");
+        System.out.println("5. Transferir internacional");
         System.out.println("0. Salir");
     }
 
@@ -52,6 +50,15 @@ public class MenuUsuario implements MenuStrategy{
                 break;
             case "4":
                 new VerSaldoCommand(persona).execute();
+                break;
+            case "5":
+                System.out.println("Codigo del banco externo: ");
+                String codigoDestno = sc.nextLine();
+                System.out.println("Codigo identifcador: ");
+                String identificadorDestino = sc.nextLine();
+                System.out.println("Monto a transferir: ");
+                monto = Integer.parseInt(sc.nextLine());
+                new TransferirExternoCommand(persona, banco, codigoDestno, identificadorDestino, monto).execute();
                 break;
             case "0":
                 System.out.println("Saliendo");
