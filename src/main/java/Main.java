@@ -13,7 +13,7 @@ public class Main {
         MediatorInterbancario redCentral = new RedCentral();
 
         bancolucas.dominio.Banco bancoLucas = new bancolucas.dominio.Banco();
-        bancodaniel.model.Banco bancoDaniel = new bancodaniel.model.Banco("BB");
+        bancodaniel.model.Banco bancoDaniel = new bancodaniel.model.Banco("BANCO_DANIEL");
 
         redCentral.registrarBanco(bancoLucas);
         bancoLucas.setMediator(redCentral);
@@ -22,7 +22,7 @@ public class Main {
         bancoDaniel.setMediator(redCentral);
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("--- RED INTERBANCARIA ---");
+        System.out.println("--- RED INTERBANCARIA UNIFICADA ---");
         System.out.println("¿En qué banco desea operar?");
         System.out.println("1. Banco Lucas (" + bancoLucas.getCodigoBanco() + ")");
         System.out.println("2. Banco Daniel (" + bancoDaniel.getCodigoBanco() + ")");
@@ -42,11 +42,25 @@ public class Main {
                 .build();
         personasDaniel.add(ceoDaniel);
         bancoDaniel.setCeo(ceoDaniel);
-        ceoDaniel.getCuenta().depositar(500);
-        if (seleccion.equals("1")) {
 
+        bancodaniel.model.Persona usuarioPruebaDaniel = new bancodaniel.model.Persona.Builder()
+                .setNombre("Usuario Prueba")
+                .setDireccion("Calle 123")
+                .setCorreo("asd@mail.com")
+                .setCuenta(new bancodaniel.model.Cuenta(bancodaniel.enums.TipoCuenta.CUENTA_CORRIENTE))
+                .setPassword("asd")
+                .setRol(bancodaniel.enums.Rol.USUARIO)
+                .build();
+
+        bancodaniel.model.Sucursal sucursalDaniel = new bancodaniel.model.Sucursal("Sucursal Central");
+        sucursalDaniel.agregarPersona(usuarioPruebaDaniel);
+        bancoDaniel.agregarSucursal(sucursalDaniel);
+        personasDaniel.add(usuarioPruebaDaniel);
+
+        if (seleccion.equals("1")) {
             PortalBancario portal = new PortalBancario(bancoLucas);
             portal.iniciar();
+
         } else if (seleccion.equals("2")) {
             System.out.println("\n--- INICIANDO SISTEMA BANCO DANIEL ---");
 

@@ -70,7 +70,7 @@ public class Banco implements BancoRed {
     @Override
     public boolean recibirTransferenciaExterna(String identificadorDestino, double monto) {
         for (Sucursal sucursal: this.sucursales) {
-            Persona persona = sucursal.buscarPersona(identificadorDestino);
+            Persona persona = sucursal.buscarPersonaPorCorreo(identificadorDestino);
             if (persona != null) {
                 persona.getCuenta().depositar((int) monto);
                 return true;
@@ -82,7 +82,7 @@ public class Banco implements BancoRed {
     @Override
     public double obtenerBalanceExterno(String identificadorDestino) {
         for (Sucursal sucursal: this.sucursales) {
-            Persona persona = sucursal.buscarPersona(identificadorDestino);
+            Persona persona = sucursal.buscarPersonaPorCorreo(identificadorDestino);
             if (persona != null) {
                 return persona.getCuenta().getSaldo();
             }

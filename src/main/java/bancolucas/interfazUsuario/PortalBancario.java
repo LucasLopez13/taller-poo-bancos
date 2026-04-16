@@ -111,10 +111,6 @@ public class PortalBancario {
         if (requiereDestino) {
             System.out.print("Ingrese el email de la cuenta destino: ");
             emailDestino = scanner.nextLine();
-            if (banco.buscarPorEmailEnSucursales(emailDestino) == null) {
-                System.out.println("Error: La cuenta destino no existe.");
-                return;
-            }
         }
 
         double monto = LectorConsola.leerDoublePositivo(scanner, "Ingrese el monto: $");
