@@ -20,8 +20,9 @@ public class PanelAdminCentral extends PanelBase {
         menu.agregarOpcion(1, "Auditoria de sucursales y balances", () -> mostrarAuditoriaGlobal() );
         menu.agregarOpcion(2, "Ver todas las cuentas", () -> listarTodoElSistema());
         menu.agregarOpcion(3, "Ver balance general del banco", () -> System.out.println("Balance TOTAL del banco: $" + banco.consultarSaldoTotalDelBanco()));
-        menu.agregarOpcion(4, "Asignar admin a sucursal", () -> asignarNuevoAdmin());
-        menu.agregarOpcionSalir(5, "Salir");
+        menu.agregarOpcion(4, "Consultar saldo en OTRO banco", () -> consultarSaldoDeOtroBanco());
+        menu.agregarOpcion(5, "Asignar admin a sucursal", () -> asignarNuevoAdmin());
+        menu.agregarOpcionSalir(6, "Salir");
 
     }
 
@@ -71,6 +72,21 @@ public class PanelAdminCentral extends PanelBase {
         banco.registrarNuevoAdminLocal(sucursalElegida, email, password);
 
         System.out.println("¡Éxito! El administrador " + email + " ha sido asignado a " + sucursalElegida.getNombre() + ".");
+    }
+
+    public void consultarSaldoDeOtroBanco() {
+        System.out.println("Ingrese el codigo del banco a consultar: ");
+        String codBanco = scanner.nextLine();
+
+        System.out.println("Ingrese el email del usuario: ");
+        String email = scanner.nextLine();
+        double saldoExterno = banco.getMediator().solicitarBalance(codBanco, email);
+
+        if (saldoExterno != -1) {
+            System.out.println("El saldo de " + email + " es: $" + saldoExterno);
+        } else {
+            System.out.println("Error: El usuario no existe en el banco o el banco no esta conectado a la red.");
+        }
     }
 
 
