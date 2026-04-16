@@ -1,0 +1,190 @@
+{
+  "bancos": [
+    {
+      "nombre": "Banco Nación",
+      "codigo": "BNA",
+      "sucursales": [
+        {
+          "nombre": "Balvanera",
+        },
+        {
+          "nombre": "Palermo",
+        },
+        {
+          "nombre": "Belgrano",
+        },
+        {
+          "nombre": "Floresta",
+        }
+      ]
+    },
+    {
+      "nombre": "Banco Santander",
+      "codigo": "SAN",
+      "sucursales": [
+        {
+          "nombre": "Microcentro",
+        },
+        {
+          "nombre": "Recoleta",
+        },
+        {
+          "nombre": "San Telmo",
+        },
+        {
+          "nombre": "Villa Urquiza",
+        }
+      ]
+    },
+    {
+      "nombre": "Banco Galicia",
+      "codigo": "GAL",
+      "sucursales": [
+        {
+          "nombre": "Caballito",
+        },
+        {
+          "nombre": "Once",
+        },
+        {
+          "nombre": "Almagro",
+        },
+        {
+          "nombre": "Liniers",
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "nombre": "CEO",
+      "rol": "CEO",
+      "direccion": "Los admins 123",
+      "correo": "admin@gmail.com",
+      "tipoDeCuenta": "CUENTA_CORRIENTE",
+      "contraseña": "123456",
+      "sucursal": "Balvanera",
+      "banco": "Banco Nación"
+    },
+    {
+      "nombre": "Carlos Rodríguez",
+      "rol": "ADMIN",
+      "direccion": "Av. Corrientes 800",
+      "correo": "carlos.rodriguez@gmail.com",
+      "tipoDeCuenta": "CUENTA_CORRIENTE",
+      "contraseña": "admin01",
+      "sucursal": "Balvanera",
+      "banco": "Banco Nación"
+    },
+    {
+      "nombre": "Laura Martínez",
+      "rol": "ADMIN",
+      "direccion": "Gallo 456",
+      "correo": "laura.martinez@gmail.com",
+      "tipoDeCuenta": "CAJA_AHORRO",
+      "contraseña": "admin02",
+      "sucursal": "Palermo",
+      "banco": "Banco Nación"
+    },
+    {
+      "nombre": "Marcos Pérez",
+      "rol": "CLIENTE",
+      "direccion": "Thames 1200",
+      "correo": "marcos.perez@gmail.com",
+      "tipoDeCuenta": "CAJA_AHORRO",
+      "contraseña": "cliente03",
+      "sucursal": "Belgrano",
+      "banco": "Banco Nación"
+    },
+    {
+      "nombre": "Sofía López",
+      "rol": "CLIENTE",
+      "direccion": "Nazca 300",
+      "correo": "sofia.lopez@gmail.com",
+      "tipoDeCuenta": "CUENTA_CORRIENTE",
+      "contraseña": "cliente04",
+      "sucursal": "Floresta",
+      "banco": "Banco Nación"
+    },
+    {
+      "nombre": "Diego Fernández",
+      "rol": "ADMIN",
+      "direccion": "Mitre 250",
+      "correo": "diego.fernandez@gmail.com",
+      "tipoDeCuenta": "CUENTA_CORRIENTE",
+      "contraseña": "admin05",
+      "sucursal": "Microcentro",
+      "banco": "Banco Santander"
+    },
+    {
+      "nombre": "Valentina Torres",
+      "rol": "ADMIN",
+      "direccion": "Callao 780",
+      "correo": "valentina.torres@gmail.com",
+      "tipoDeCuenta": "CAJA_AHORRO",
+      "contraseña": "admin06",
+      "sucursal": "Recoleta",
+      "banco": "Banco Santander"
+    },
+    {
+      "nombre": "Matías González",
+      "rol": "CLIENTE",
+      "direccion": "Defensa 400",
+      "correo": "matias.gonzalez@gmail.com",
+      "tipoDeCuenta": "CAJA_AHORRO",
+      "contraseña": "cliente07",
+      "sucursal": "San Telmo",
+      "banco": "Banco Santander"
+    },
+    {
+      "nombre": "Camila Herrera",
+      "rol": "CLIENTE",
+      "direccion": "Triunvirato 3200",
+      "correo": "camila.herrera@gmail.com",
+      "tipoDeCuenta": "CUENTA_CORRIENTE",
+      "contraseña": "cliente08",
+      "sucursal": "Villa Urquiza",
+      "banco": "Banco Santander"
+    },
+    {
+      "nombre": "Lucas Díaz",
+      "rol": "ADMIN",
+      "direccion": "Rivadavia 4800",
+      "correo": "lucas.diaz@gmail.com",
+      "tipoDeCuenta": "CUENTA_CORRIENTE",
+      "contraseña": "admin09",
+      "sucursal": "Caballito",
+      "banco": "Banco Galicia"
+    },
+    {
+      "nombre": "Agustina Ruiz",
+      "rol": "ADMIN",
+      "direccion": "Pueyrredón 150",
+      "correo": "agustina.ruiz@gmail.com",
+      "tipoDeCuenta": "CAJA_AHORRO",
+      "contraseña": "admin10",
+      "sucursal": "Once",
+      "banco": "Banco Galicia"
+    },
+    {
+      "nombre": "Nicolás Sánchez",
+      "rol": "CLIENTE",
+      "direccion": "Díaz Vélez 3500",
+      "correo": "nicolas.sanchez@gmail.com",
+      "tipoDeCuenta": "CAJA_AHORRO",
+      "contraseña": "cliente11",
+      "sucursal": "Almagro",
+      "banco": "Banco Galicia"
+    },
+    {
+      "nombre": "Florencia Castro",
+      "rol": "CLIENTE",
+      "direccion": "Rivadavia 11000",
+      "correo": "florencia.castro@gmail.com",
+      "tipoDeCuenta": "CUENTA_CORRIENTE",
+      "contraseña": "cliente12",
+      "sucursal": "Liniers",
+      "banco": "Banco Galicia"
+    }
+  ]
+}
