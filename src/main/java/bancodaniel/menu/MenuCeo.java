@@ -24,6 +24,7 @@ public class MenuCeo implements MenuStrategy {
         System.out.println("4. Ver usuarios registrados");
         System.out.println("5. Agregar admin a sucursal");
         System.out.println("6. Ver usuarios de sucursal");
+        System.out.println("7. Solicitar balance externo");
         System.out.println("0. Salir");
     }
 
@@ -55,6 +56,13 @@ public class MenuCeo implements MenuStrategy {
                 System.out.println("Nombre de la sucursal: ");
                 nombreSucursal = sc.nextLine();
                 new VerPersonaPorSucursalCommand(this.banco, nombreSucursal).execute();
+                break;
+            case "7":
+                System.out.println("Identificador de banco destino: ");
+                String codigoBanco = sc.nextLine();
+                System.out.println("Identificador usuario: ");
+                String idenficadorDestino = sc.nextLine();
+                new SolicitarBalanceExternoCommand(this.banco, codigoBanco, idenficadorDestino).execute();
                 break;
             case "0":
                 System.out.println("Saliendo...");
