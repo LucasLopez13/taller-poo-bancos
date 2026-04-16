@@ -97,5 +97,12 @@ public class Banco implements BancoRed {
         return false;
     }
 
+    private double solicitarBalanceExterno(String codigoDestino, String identificadorDestino) {
+        if (this.mediator != null) {
+            return this.mediator.solicitarBalance(codigoDestino, identificadorDestino);
+        }
 
+        System.out.println("Mediador no existe");
+        return -1;
+    }
 }
