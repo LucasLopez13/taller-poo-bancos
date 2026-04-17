@@ -21,15 +21,6 @@ public class Main {
         redCentral.registrarBanco(bancoDaniel);
         bancoDaniel.setMediator(redCentral);
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("--- RED INTERBANCARIA UNIFICADA ---");
-        System.out.println("¿En qué banco desea operar?");
-        System.out.println("1. Banco Lucas (" + bancoLucas.getCodigoBanco() + ")");
-        System.out.println("2. Banco Daniel (" + bancoDaniel.getCodigoBanco() + ")");
-        System.out.print("Selección: ");
-
-        String seleccion = sc.nextLine();
-
         List<Persona> personasDaniel = new ArrayList<>();
 
         bancodaniel.model.Persona ceoDaniel = new bancodaniel.model.Persona.Builder()
@@ -57,34 +48,53 @@ public class Main {
         bancoDaniel.agregarSucursal(sucursalDaniel);
         personasDaniel.add(usuarioPruebaDaniel);
 
-        if (seleccion.equals("1")) {
-            PortalBancario portal = new PortalBancario(bancoLucas);
-            portal.iniciar();
+        Scanner sc = new Scanner(System.in);
+        String seleccion = "";
 
-        } else if (seleccion.equals("2")) {
-            System.out.println("\n--- INICIANDO SISTEMA BANCO DANIEL ---");
+        while (!seleccion.equals("0")) {
+            System.out.println("\n=======================================");
+            System.out.println("  --- RED INTERBANCARIA UNIFICADA ---  ");
+            System.out.println("=======================================");
+            System.out.println("¿En qué banco desea operar?");
+            System.out.println("1. Banco Lucas (" + bancoLucas.getCodigoBanco() + ")");
+            System.out.println("2. Banco Daniel (" + bancoDaniel.getCodigoBanco() + ")");
+            System.out.println("0. Apagar Sistema");
+            System.out.print("Selección: ");
 
-            bancodaniel.model.Persona personaLogueada = bancodaniel.command.autenticacion.IniciarSesionCommand.iniciarSecion(sc, personasDaniel);
+            seleccion = sc.nextLine();
 
-            if (personaLogueada != null) {
-                System.out.println("Conectado: " + personaLogueada.getNombre());
-
-                bancodaniel.menu.MenuStrategy menuDaniel = bancodaniel.menu.MenuFactory.crearMenu(personaLogueada, bancoDaniel, personasDaniel);
-
-                if (menuDaniel != null) {
-                    String opcionDaniel;
-                    do {
-                        menuDaniel.mostrar();
-                        opcionDaniel = sc.nextLine();
-                        menuDaniel.manejarOpcion(opcionDaniel, sc);
-                    } while (!opcionDaniel.equals("0"));
+            switch (seleccion) {
+                case "1" -> {
+                    PortalBancario portal = new PortalBancario(bancoLucas);
+                    portal.iniciar();
                 }
-            } else {
-                System.out.println("Saliendo del sistema de Daniel...");
-            }
+                case "2" -> {
+                    System.out.println("\n--- INICIANDO SISTEMA BANCO DANIEL ---");
 
-        } else {
-            System.out.println("Opción no válida.");
+                    Persona personaLogueada = bancodaniel.command.autenticacion.IniciarSesionCommand.iniciarSecion(sc, personasDaniel);
+
+                    if (personaLogueada != null) {
+                        System.out.println("Conectado: " + personaLogueada.getNombre());
+
+                        bancodaniel.menu.MenuStrategy menuDaniel = bancodaniel.menu.MenuFactory.crearMenu(personaLogueada, bancoDaniel, personasDaniel);
+
+                        if (menuDaniel != null) {
+                            String opcionDaniel;
+                            do {
+                                menuDaniel.mostrar();
+                                opcionDaniel = sc.nextLine();
+                                menuDaniel.manejarOpcion(opcionDaniel, sc);
+                            } while (!opcionDaniel.equals("0"));
+                        }
+                    } else {
+                        System.out.println("Volviendo a la Red Interbancaria...");
+                    }
+                }
+                case "0" -> System.out.println("Apagando la Red Interbancaria... ¡Adios!");
+                default -> System.out.println("Opción no válida. Intente nuevamente.");
+            }
         }
+
+        sc.close();
     }
     }

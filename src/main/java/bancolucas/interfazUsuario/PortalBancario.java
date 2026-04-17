@@ -27,7 +27,6 @@ public class PortalBancario {
         menuPrincipal.agregarOpcionSalir(3, "Salir");
 
         menuPrincipal.mostrar();
-        scanner.close();
         System.out.println("Gracias por utilizar el sistema bancario. ¡Adios!");
     }
 
