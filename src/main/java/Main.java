@@ -1,10 +1,8 @@
-import bancodaniel.model.Persona;
+import bancodaniel.model.PortalBancarioDaniel;
 import bancolucas.interfazUsuario.PortalBancario;
 import interbancario.MediatorInterbancario;
 import interbancario.RedCentral;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -21,32 +19,7 @@ public class Main {
         redCentral.registrarBanco(bancoDaniel);
         bancoDaniel.setMediator(redCentral);
 
-        List<Persona> personasDaniel = new ArrayList<>();
-
-        bancodaniel.model.Persona ceoDaniel = new bancodaniel.model.Persona.Builder()
-                .setNombre("Agustin")
-                .setDireccion("Calle Admin 1")
-                .setCorreo("test")
-                .setCuenta(new bancodaniel.model.Cuenta(bancodaniel.enums.TipoCuenta.CUENTA_CORRIENTE))
-                .setPassword("123")
-                .setRol(bancodaniel.enums.Rol.CEO)
-                .build();
-        personasDaniel.add(ceoDaniel);
-        bancoDaniel.setCeo(ceoDaniel);
-
-        bancodaniel.model.Persona usuarioPruebaDaniel = new bancodaniel.model.Persona.Builder()
-                .setNombre("Usuario Prueba")
-                .setDireccion("Calle 123")
-                .setCorreo("asd@mail.com")
-                .setCuenta(new bancodaniel.model.Cuenta(bancodaniel.enums.TipoCuenta.CUENTA_CORRIENTE))
-                .setPassword("asd")
-                .setRol(bancodaniel.enums.Rol.USUARIO)
-                .build();
-
-        bancodaniel.model.Sucursal sucursalDaniel = new bancodaniel.model.Sucursal("Sucursal Central");
-        sucursalDaniel.agregarPersona(usuarioPruebaDaniel);
-        bancoDaniel.agregarSucursal(sucursalDaniel);
-        personasDaniel.add(usuarioPruebaDaniel);
+        PortalBancarioDaniel portalDaniel = new PortalBancarioDaniel(bancoDaniel);
 
         Scanner sc = new Scanner(System.in);
         String seleccion = "";
@@ -63,35 +36,17 @@ public class Main {
 
             seleccion = sc.nextLine();
 
-            switch (seleccion) {
-                case "1" -> {
-                    PortalBancario portal = new PortalBancario(bancoLucas);
-                    portal.iniciar();
-                }
-                case "2" -> {
-                    System.out.println("\n--- INICIANDO SISTEMA BANCO DANIEL ---");
+            if (seleccion.equals("1")) {
+                PortalBancario portalLucas = new PortalBancario(bancoLucas);
+                portalLucas.iniciar();
 
-                    Persona personaLogueada = bancodaniel.command.autenticacion.IniciarSesionCommand.iniciarSecion(sc, personasDaniel);
+            } else if (seleccion.equals("2")) {
+                portalDaniel.iniciar(sc);
 
-                    if (personaLogueada != null) {
-                        System.out.println("Conectado: " + personaLogueada.getNombre());
-
-                        bancodaniel.menu.MenuStrategy menuDaniel = bancodaniel.menu.MenuFactory.crearMenu(personaLogueada, bancoDaniel, personasDaniel);
-
-                        if (menuDaniel != null) {
-                            String opcionDaniel;
-                            do {
-                                menuDaniel.mostrar();
-                                opcionDaniel = sc.nextLine();
-                                menuDaniel.manejarOpcion(opcionDaniel, sc);
-                            } while (!opcionDaniel.equals("0"));
-                        }
-                    } else {
-                        System.out.println("Volviendo a la Red Interbancaria...");
-                    }
-                }
-                case "0" -> System.out.println("Apagando la Red Interbancaria... ¡Adios!");
-                default -> System.out.println("Opción no válida. Intente nuevamente.");
+            } else if (seleccion.equals("0")) {
+                System.out.println("Apagando la Red Interbancaria... ¡Hasta luego!");
+            } else {
+                System.out.println("Opción no válida. Intente nuevamente.");
             }
         }
 
