@@ -11,7 +11,7 @@ public class VerSaldoCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void ejecutar() {
         System.out.println("Tu saldo actual es :" + this.persona.getCuenta().getSaldo());
     }
 }

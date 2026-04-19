@@ -12,7 +12,7 @@ public class MostrarBalanceCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void ejecutar() {
         if(this.banco.getSucursales().isEmpty()) {
             System.out.println("No hay sucursales en el banco " + this.banco.getNombre());
             return;

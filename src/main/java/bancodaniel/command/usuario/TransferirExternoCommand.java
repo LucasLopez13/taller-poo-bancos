@@ -20,7 +20,7 @@ public class TransferirExternoCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void ejecutar() {
         if(this.origen.getCuenta().getSaldo() < monto) {
             System.out.println("Saldo insuficiente");
             return;

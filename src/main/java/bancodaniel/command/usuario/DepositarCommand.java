@@ -13,7 +13,7 @@ public class DepositarCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void ejecutar() {
         persona.getCuenta().depositar(monto);
     }
 }

@@ -21,7 +21,7 @@ public class TransferirCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void ejecutar() {
         Sucursal sucursal = this.banco.buscarSucursal(this.nombreSucursal);
         if (sucursal == null) {
             System.out.println("Sucursal no encontrada");

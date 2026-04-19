@@ -15,7 +15,7 @@ public class SolicitarBalanceExternoCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void ejecutar() {
         double saldo = this.banco.solicitarBalanceExterno(this.codigoDestino, this.idenficadorDestino);
         if (saldo >= 0) {
             System.out.println(this.idenficadorDestino + "su balance en el banco es de " + saldo);

@@ -32,12 +32,12 @@ public class MenuUsuario implements MenuStrategy{
             case "1":
                 System.out.print("Monto a depositar: ");
                 int depositar = Integer.parseInt(sc.nextLine());
-                new DepositarCommand(persona, depositar).execute();
+                new DepositarCommand(persona, depositar).ejecutar();
                 break;
             case "2":
                 System.out.print("Monto a retirar: ");
                 int retirar = Integer.parseInt(sc.nextLine());
-                new RetirarCommand(persona, retirar).execute();
+                new RetirarCommand(persona, retirar).ejecutar();
                 break;
             case "3":
                 System.out.println("Sucursal destino: ");
@@ -46,10 +46,10 @@ public class MenuUsuario implements MenuStrategy{
                 String nombreDestinatario = sc.nextLine();
                 System.out.println("Monto a transferir: ");
                 int monto = Integer.parseInt(sc.nextLine());
-                new TransferirCommand(persona, banco, nombreSucursal, nombreDestinatario, monto).execute();
+                new TransferirCommand(persona, banco, nombreSucursal, nombreDestinatario, monto).ejecutar();
                 break;
             case "4":
-                new VerSaldoCommand(persona).execute();
+                new VerSaldoCommand(persona).ejecutar();
                 break;
             case "5":
                 System.out.println("Codigo del banco externo: ");
@@ -58,7 +58,7 @@ public class MenuUsuario implements MenuStrategy{
                 String identificadorDestino = sc.nextLine();
                 System.out.println("Monto a transferir: ");
                 monto = Integer.parseInt(sc.nextLine());
-                new TransferirExternoCommand(persona, banco, codigoDestno, identificadorDestino, monto).execute();
+                new TransferirExternoCommand(persona, banco, codigoDestno, identificadorDestino, monto).ejecutar();
                 break;
             case "0":
                 System.out.println("Saliendo");

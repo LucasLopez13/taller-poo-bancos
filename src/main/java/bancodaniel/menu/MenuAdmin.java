@@ -35,12 +35,12 @@ public class MenuAdmin implements MenuStrategy {
                 nombreSucursal = sc.nextLine();
                 System.out.println("Correo del usuario:");
                 String correo = sc.nextLine();
-                new AgregarPersonaASucursalCommand(banco, personasRegistradas, nombreSucursal, correo).execute();
+                new AgregarPersonaASucursalCommand(banco, personasRegistradas, nombreSucursal, correo).ejecutar();
                 break;
             case "2":
                 System.out.println("Nombre de la sucursal: ");
                 nombreSucursal = sc.nextLine();
-                new VerPersonaPorSucursalCommand(this.banco, nombreSucursal).execute();
+                new VerPersonaPorSucursalCommand(this.banco, nombreSucursal).ejecutar();
                 break;
             case "0":
                 System.out.println("Saliendo...");

@@ -34,35 +34,35 @@ public class MenuCeo implements MenuStrategy {
             case "1":
                 System.out.print("Nombre de la sucursal: ");
                 String nombreSucursal = sc.nextLine();
-                new CrearSucursalCommand(this.banco, nombreSucursal).execute();
+                new CrearSucursalCommand(this.banco, nombreSucursal).ejecutar();
                 break;
             case "2":
-                new MostrarSucursalesCommand(this.banco).execute();
+                new MostrarSucursalesCommand(this.banco).ejecutar();
                 break;
             case "3":
-                new MostrarBalanceCommand(this.banco).execute();
+                new MostrarBalanceCommand(this.banco).ejecutar();
                 break;
             case "4":
-                new VerPersonasRegistradasCommand(personasRegistradas).execute();
+                new VerPersonasRegistradasCommand(personasRegistradas).ejecutar();
                 break;
             case "5":
                 System.out.println("Nombre de la sucursal: ");
                 nombreSucursal = sc.nextLine();
                 System.out.println("Correo del usuario:");
                 String correo = sc.nextLine();
-                new AsignarAdminASucursalCommand(banco, personasRegistradas, nombreSucursal, correo).execute();
+                new AsignarAdminASucursalCommand(banco, personasRegistradas, nombreSucursal, correo).ejecutar();
                 break;
             case "6":
                 System.out.println("Nombre de la sucursal: ");
                 nombreSucursal = sc.nextLine();
-                new VerPersonaPorSucursalCommand(this.banco, nombreSucursal).execute();
+                new VerPersonaPorSucursalCommand(this.banco, nombreSucursal).ejecutar();
                 break;
             case "7":
                 System.out.println("Identificador de banco destino: ");
                 String codigoBanco = sc.nextLine();
                 System.out.println("Identificador usuario: ");
                 String idenficadorDestino = sc.nextLine();
-                new SolicitarBalanceExternoCommand(this.banco, codigoBanco, idenficadorDestino).execute();
+                new SolicitarBalanceExternoCommand(this.banco, codigoBanco, idenficadorDestino).ejecutar();
                 break;
             case "0":
                 System.out.println("Saliendo...");

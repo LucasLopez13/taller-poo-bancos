@@ -15,7 +15,7 @@ public class VerPersonaPorSucursalCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void ejecutar() {
         Sucursal sucursal = this.banco.buscarSucursal(nombreSucursal);
 
         if (sucursal == null){

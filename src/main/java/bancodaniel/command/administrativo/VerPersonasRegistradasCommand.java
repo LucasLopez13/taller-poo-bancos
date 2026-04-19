@@ -13,7 +13,7 @@ public class VerPersonasRegistradasCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void ejecutar() {
         if (this.personasRegistradas.isEmpty()) {
             System.out.println("No hay usuarios registrados.");
             return;

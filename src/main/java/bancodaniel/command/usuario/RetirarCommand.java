@@ -13,7 +13,7 @@ public class RetirarCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void ejecutar() {
         persona.getCuenta().retirar(monto);
     }
 }

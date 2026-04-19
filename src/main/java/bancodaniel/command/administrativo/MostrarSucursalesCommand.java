@@ -12,7 +12,7 @@ public class MostrarSucursalesCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void ejecutar() {
         System.out.println(this.banco.getNombre() + " tiene sucurales: ");
         for (Sucursal sucursal : this.banco.getSucursales()) {
             System.out.println("    " + sucursal.getNombre());

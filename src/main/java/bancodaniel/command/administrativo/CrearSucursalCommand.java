@@ -14,7 +14,7 @@ public class CrearSucursalCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void ejecutar() {
         Sucursal nuevaSucursal = new Sucursal(nombreSucursal);
         boolean agregado = this.banco.agregarSucursal(nuevaSucursal);
         String mensaje = agregado ?
