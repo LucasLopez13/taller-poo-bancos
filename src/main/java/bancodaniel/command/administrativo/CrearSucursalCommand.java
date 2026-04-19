@@ -1,24 +1,21 @@
 package bancodaniel.command.administrativo;
 
 import bancodaniel.command.Command;
+import bancodaniel.logic.interfaces.ICeoStrategy;
 import bancodaniel.model.Banco;
 import bancodaniel.model.Sucursal;
 
 public class CrearSucursalCommand implements Command {
-    private Banco banco;
     private String nombreSucursal;
+    private ICeoStrategy strategy;
 
-    public CrearSucursalCommand(Banco banco, String nombreSucursal) {
-        this.banco = banco;
+    public CrearSucursalCommand(String nombreSucursal, ICeoStrategy strategy) {
         this.nombreSucursal = nombreSucursal;
+        this.strategy = strategy;
     }
 
     @Override
     public void ejecutar() {
-        Sucursal nuevaSucursal = new Sucursal(nombreSucursal);
-        boolean agregado = this.banco.agregarSucursal(nuevaSucursal);
-        String mensaje = agregado ?
-                "Sucursal agregado correctamente": "Existe una sucursal con ese nombre";
-        System.out.println(mensaje);
+        this.strategy.crearSucursal(nombreSucursal);
     }
 }
