@@ -6,5 +6,5 @@ public interface ICeoStrategy {
     void asignarAdminASucursal(String nombreSucursal, String correo);
     void mostrarSucursales();
     void verPersonasRegistradas();
-    void solicitarBalanceExterno();
+    void solicitarBalanceExterno(String codigoDestino, String identificadorDestino);
 }

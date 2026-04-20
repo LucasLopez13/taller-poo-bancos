@@ -8,5 +8,5 @@ public interface IPersonaStrategy {
     void retirar(Cuenta cuenta, int monto);
     void transferir(Persona origen, String nombreSucursal, String nombreDestinatario, int monto);
     void verSaldo(Persona persona);
-    void transferirExterno();
+    void transferirExterno(Persona origen, String codigoDestino, String identificadorDestino, int monto);
 }
