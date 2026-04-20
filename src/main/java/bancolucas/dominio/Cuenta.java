@@ -5,7 +5,6 @@ public class Cuenta {
     private int edad;
     private String email;
     private String direccion;
-    //Enum para el tipo de cuenta
     private TipoDeCuenta tipoDeCuenta;
     private double saldo;
     private Sucursal sucursal;
@@ -18,12 +17,10 @@ public class Cuenta {
         this.direccion = direccion;
         this.tipoDeCuenta = tipoDeCuenta;
         this.sucursal = sucursal;
-        //Toda cuenta nueva tiene un saldo inicial de 0
         this.saldo = 0;
         this.solicitoBaja = false;
     }
 
-    //Metodos que van a usar segun la estrategia que se elija
     public void sumarSaldo(double monto) {
         this.saldo += monto;
     }

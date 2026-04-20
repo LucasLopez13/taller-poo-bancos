@@ -2,14 +2,12 @@ package bancolucas.interfazUsuario;
 
 import java.util.Scanner;
 
-//Clase Helper para leer datos de la consola.
 public class LectorConsola {
     /*
      * PREVENCIÓN DE FALLOS: Se lee la entrada como String con nextLine() para limpiar
      * el salto de línea (\n) del buffer de memoria. Luego se convierte a número dentro
      * de un bloque try-catch, evitando que el sistema crashee por errores de tipeo.
      */
-    //Método para leer cualquier número entero sin que el programa explote.
     public static int leerEntero(Scanner scanner, String mensaje) {
         while (true) {
             System.out.print(mensaje);
@@ -21,7 +19,6 @@ public class LectorConsola {
         }
     }
 
-    //Método para leer un entero forzando que esté dentro de un rango.
     public static int leerEnteroEnRango(Scanner scanner, String mensaje, int min, int max) {
         while (true) {
             int valor = leerEntero(scanner, mensaje);
@@ -33,7 +30,6 @@ public class LectorConsola {
         }
     }
 
-    // Método para leer el dinero y asegurarnos de que sea mayor a cero
     public static double leerDoublePositivo(Scanner scanner, String mensaje) {
         while (true) {
             System.out.print(mensaje);

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Banco implements BancoRed {
-    // Lista de cuentas
     private List<Sucursal> sucursales = new ArrayList<>();
     private List<Usuario> usuarios = new ArrayList<>();
     private MediatorInterbancario mediator;

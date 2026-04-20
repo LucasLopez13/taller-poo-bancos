@@ -52,7 +52,6 @@ public class MenuGenerico {
         }
     }
 
-    //Clase interna para ejecutar las opciones y su descripcion. Ademas de el metodo para ejecutarlas.
     private static class OpcionMenu {
         private String descripcion;
         private Runnable accion;
