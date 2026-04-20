@@ -46,7 +46,7 @@ public class Banco implements BancoRed {
     @Override
     public boolean recibirTransferenciaExterna(String identificadorDestino, double monto) {
         Persona persona = buscarPersonaPorCorreoGlobal(identificadorDestino);
-        if (persona.getCuenta() != null) {
+        if ((persona != null ? persona.getCuenta() : null) != null) {
             persona.getCuenta().setSaldo(persona.getCuenta().getSaldo() + (int) monto);
             return true;
         }
@@ -56,7 +56,7 @@ public class Banco implements BancoRed {
     @Override
     public double obtenerBalanceExterno(String identificadorDestino) {
         Persona persona = buscarPersonaPorCorreoGlobal(identificadorDestino);
-        if (persona.getCuenta() != null) {
+        if ((persona != null ? persona.getCuenta() : null) != null) {
             return (double) persona.getCuenta().getSaldo();
         }
         return -1;
