@@ -45,46 +45,35 @@ public class Banco implements BancoRed {
 
     @Override
     public boolean recibirTransferenciaExterna(String identificadorDestino, double monto) {
-        // for (Sucursal sucursal: this.sucursales) {
-        // Persona persona = sucursal.buscarPersonaPorCorreo(identificadorDestino);
-        // if (persona != null) {
-        // persona.getCuenta().depositar((int) monto);
-        // return true;
-        // }
-        // }
+        Persona persona = buscarPersonaPorCorreoGlobal(identificadorDestino);
+        if (persona.getCuenta() != null) {
+            persona.getCuenta().setSaldo(persona.getCuenta().getSaldo() + (int) monto);
+            return true;
+        }
         return false;
     }
 
     @Override
     public double obtenerBalanceExterno(String identificadorDestino) {
-        // for (Sucursal sucursal: this.sucursales) {
-        // Persona persona = sucursal.buscarPersonaPorCorreo(identificadorDestino);
-        // if (persona != null) {
-        // return persona.getCuenta().getSaldo();
-        // }
-        // }
+        Persona persona = buscarPersonaPorCorreoGlobal(identificadorDestino);
+        if (persona.getCuenta() != null) {
+            return (double) persona.getCuenta().getSaldo();
+        }
         return -1;
-    }
-
-    public boolean enviarTransferenciaExterna(String codigoDestino, String identifadorDestino, int monto) {
-        // if (this.mediator != null) {
-        // return this.mediator.enviarTransferencia(this.nombre, codigoDestino,
-        // identifadorDestino, monto);
-        // }
-        // System.out.println("No se pudo realizar la transferencia");
-        return false;
     }
 
     public MediatorInterbancario getMediator() {
         return this.mediator;
     }
 
-    public double solicitarBalanceExterno(String codigoDestino, String identificadorDestino) {
-        // if (this.mediator != null) {
-        // return this.mediator.solicitarBalance(codigoDestino, identificadorDestino);
-        // }
-        //
-        // System.out.println("Mediador no existe");
-        return -1;
+    private Persona buscarPersonaPorCorreoGlobal(String correo) {
+        for (Sucursal sucursal: this.sucursales) {
+            for (Persona persona: sucursal.getPersonas()) {
+                if (persona.getCorreo().equalsIgnoreCase(correo)) {
+                    return persona;
+                }
+            }
+        }
+        return null;
     }
 }
