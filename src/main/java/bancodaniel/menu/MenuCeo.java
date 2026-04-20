@@ -1,6 +1,10 @@
 package bancodaniel.menu;
 
 import bancodaniel.command.administrativo.*;
+import bancodaniel.logic.implementacion.AdminStrategyImpl;
+import bancodaniel.logic.implementacion.CeoStrategyImpl;
+import bancodaniel.logic.interfaces.IAdminStrategy;
+import bancodaniel.logic.interfaces.ICeoStrategy;
 import bancodaniel.model.Banco;
 import bancodaniel.model.Persona;
 
@@ -8,12 +12,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuCeo implements MenuStrategy {
-    private Banco banco;
-    private List<Persona> personasRegistradas;
+    private ICeoStrategy strategy;
+    private IAdminStrategy adminStrategy;
 
     public MenuCeo(Banco banco, List<Persona> personasRegistradas) {
-        this.banco = banco;
-        this.personasRegistradas = personasRegistradas;
+        this.strategy = new CeoStrategyImpl(banco, personasRegistradas);
+        this.adminStrategy = new AdminStrategyImpl(banco, personasRegistradas);
     }
 
     @Override
@@ -30,39 +34,40 @@ public class MenuCeo implements MenuStrategy {
 
     @Override
     public void manejarOpcion(String opcion, Scanner sc) {
+        String nombreSucursal;
         switch (opcion) {
             case "1":
                 System.out.print("Nombre de la sucursal: ");
-                String nombreSucursal = sc.nextLine();
-                new CrearSucursalCommand(this.banco, nombreSucursal).execute();
+                nombreSucursal = sc.nextLine();
+                new CrearSucursalCommand(nombreSucursal, strategy).ejecutar();
                 break;
             case "2":
-                new MostrarSucursalesCommand(this.banco).execute();
+                new MostrarSucursalesCommand(strategy).ejecutar();
                 break;
             case "3":
-                new MostrarBalanceCommand(this.banco).execute();
+                new MostrarBalanceCommand(strategy).ejecutar();
                 break;
             case "4":
-                new VerPersonasRegistradasCommand(personasRegistradas).execute();
+                new VerPersonasRegistradasCommand(strategy).ejecutar();
                 break;
             case "5":
                 System.out.println("Nombre de la sucursal: ");
                 nombreSucursal = sc.nextLine();
                 System.out.println("Correo del usuario:");
                 String correo = sc.nextLine();
-                new AsignarAdminASucursalCommand(banco, personasRegistradas, nombreSucursal, correo).execute();
+                new AsignarAdminASucursalCommand(nombreSucursal, correo, strategy).ejecutar();
                 break;
             case "6":
                 System.out.println("Nombre de la sucursal: ");
                 nombreSucursal = sc.nextLine();
-                new VerPersonaPorSucursalCommand(this.banco, nombreSucursal).execute();
+                new VerPersonaPorSucursalCommand(nombreSucursal, adminStrategy).ejecutar();
                 break;
             case "7":
                 System.out.println("Identificador de banco destino: ");
                 String codigoBanco = sc.nextLine();
                 System.out.println("Identificador usuario: ");
-                String idenficadorDestino = sc.nextLine();
-                new SolicitarBalanceExternoCommand(this.banco, codigoBanco, idenficadorDestino).execute();
+                String identificadorDestino = sc.nextLine();
+                new SolicitarBalanceExternoCommand(codigoBanco, identificadorDestino, strategy).ejecutar();
                 break;
             case "0":
                 System.out.println("Saliendo...");

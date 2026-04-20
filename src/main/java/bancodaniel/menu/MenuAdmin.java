@@ -1,6 +1,8 @@
 package bancodaniel.menu;
 
 import bancodaniel.command.administrativo.*;
+import bancodaniel.logic.implementacion.AdminStrategyImpl;
+import bancodaniel.logic.interfaces.IAdminStrategy;
 import bancodaniel.model.Banco;
 import bancodaniel.model.Persona;
 
@@ -9,15 +11,13 @@ import java.util.Scanner;
 
 public class MenuAdmin implements MenuStrategy {
     private Persona admin;
-    private Banco banco;
+    private IAdminStrategy strategy;
+
 
     public MenuAdmin(Persona admin, Banco banco, List<Persona> personasRegistradas) {
         this.admin = admin;
-        this.banco = banco;
-        this.personasRegistradas = personasRegistradas;
+        this.strategy = new AdminStrategyImpl(banco, personasRegistradas);
     }
-
-    private List<Persona> personasRegistradas;
 
     @Override
     public void mostrar() {
@@ -35,12 +35,12 @@ public class MenuAdmin implements MenuStrategy {
                 nombreSucursal = sc.nextLine();
                 System.out.println("Correo del usuario:");
                 String correo = sc.nextLine();
-                new AgregarPersonaASucursalCommand(banco, personasRegistradas, nombreSucursal, correo).execute();
+                new AgregarPersonaASucursalCommand(nombreSucursal, correo, strategy).ejecutar();
                 break;
             case "2":
                 System.out.println("Nombre de la sucursal: ");
                 nombreSucursal = sc.nextLine();
-                new VerPersonaPorSucursalCommand(this.banco, nombreSucursal).execute();
+                new VerPersonaPorSucursalCommand(nombreSucursal, strategy).ejecutar();
                 break;
             case "0":
                 System.out.println("Saliendo...");

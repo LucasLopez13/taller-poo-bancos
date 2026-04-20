@@ -41,15 +41,15 @@ public class Main {
                 .build();
         Sucursal prueba3 = new Sucursal("zzz");
 
-        prueba3.agregarPersona(prueba2);
-        prueba3.agregarPersona(prueba1);
+        prueba3.getPersonas().add(prueba1);
+        prueba3.getPersonas().add(prueba2);
 
         ceo.mostrarDatosPersona();
 
         Banco banco = new Banco("Prueba");
         banco.setCeo(ceo);
 
-        banco.agregarSucursal(prueba3);
+        banco.getSucursales().add(prueba3);
         System.out.println("El CEO del banco es: " + banco.getCeo().getNombre());
 
         List<Persona> personasRegistradas = new ArrayList<>();
