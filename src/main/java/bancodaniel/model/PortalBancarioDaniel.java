@@ -42,8 +42,8 @@ public class PortalBancarioDaniel {
                 .build();
 
         Sucursal sucursal = new Sucursal("Sucursal Central");
-        sucursal.agregarPersona(usuarioPrueba);
-        banco.agregarSucursal(sucursal);
+        sucursal.getPersonas().add(usuarioPrueba);
+        banco.getSucursales().add(sucursal);
         personasRegistradas.add(usuarioPrueba);
     }
 

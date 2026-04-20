@@ -1,21 +1,17 @@
 package bancodaniel.command.administrativo;
 
 import bancodaniel.command.Command;
-import bancodaniel.model.Banco;
-import bancodaniel.model.Sucursal;
+import bancodaniel.logic.interfaces.ICeoStrategy;
 
 public class MostrarSucursalesCommand implements Command {
-    private Banco banco;
+    private ICeoStrategy strategy;
 
-    public MostrarSucursalesCommand(Banco banco) {
-        this.banco = banco;
+    public MostrarSucursalesCommand(ICeoStrategy strategy) {
+        this.strategy = strategy;
     }
 
     @Override
-    public void execute() {
-        System.out.println(this.banco.getNombre() + " tiene sucurales: ");
-        for (Sucursal sucursal : this.banco.getSucursales()) {
-            System.out.println("    " + sucursal.getNombre());
-        }
+    public void ejecutar() {
+        this.strategy.mostrarSucursales();
     }
 }
