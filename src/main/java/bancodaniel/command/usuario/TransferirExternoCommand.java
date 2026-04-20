@@ -1,38 +1,27 @@
 package bancodaniel.command.usuario;
 
 import bancodaniel.command.Command;
-import bancodaniel.model.Banco;
+import bancodaniel.logic.interfaces.IPersonaStrategy;
 import bancodaniel.model.Persona;
 
 public class TransferirExternoCommand implements Command {
+    private IPersonaStrategy strategy;
     private Persona origen;
-    private Banco banco;
     private String codigoDestino;
     private String identificadorDestino;
     private int monto;
 
-    public TransferirExternoCommand(Persona origen, Banco banco, String codigoDestino, String identificadorDestino, int monto) {
+    public TransferirExternoCommand(Persona origen, String codigoDestino, String identificadorDestino, int monto,
+            IPersonaStrategy strategy) {
         this.origen = origen;
-        this.banco = banco;
         this.codigoDestino = codigoDestino;
         this.identificadorDestino = identificadorDestino;
         this.monto = monto;
+        this.strategy = strategy;
     }
 
     @Override
     public void ejecutar() {
-        if(this.origen.getCuenta().getSaldo() < monto) {
-            System.out.println("Saldo insuficiente");
-            return;
-        }
-
-        boolean estado = this.banco.enviarTransferenciaExterna(this.codigoDestino, this.identificadorDestino, monto);
-
-        if (estado) {
-            this.origen.getCuenta().retirar(monto);
-            System.out.println("Transferencia exitosa: " + monto );
-        } else {
-            System.out.println("No se pudo transferir");
-        }
+        this.strategy.transferirExterno(this.origen, this.codigoDestino, this.identificadorDestino, this.monto);
     }
 }

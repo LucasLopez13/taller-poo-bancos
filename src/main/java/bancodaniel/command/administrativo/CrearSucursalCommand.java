@@ -2,8 +2,6 @@ package bancodaniel.command.administrativo;
 
 import bancodaniel.command.Command;
 import bancodaniel.logic.interfaces.ICeoStrategy;
-import bancodaniel.model.Banco;
-import bancodaniel.model.Sucursal;
 
 public class CrearSucursalCommand implements Command {
     private String nombreSucursal;
